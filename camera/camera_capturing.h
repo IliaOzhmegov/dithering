@@ -20,7 +20,7 @@ private:
             cap.open(0);
         }catch (int e){
             using namespace std;
-            cout << "Did not managed to open camera: " << e << '\n';
+            cout << "Did not manage to open camera: " << e << '\n';
         }
     }
 
@@ -32,13 +32,19 @@ public:
 
 
     static Camera * openCamera(){
-        if (!instance)
+        if (!instance) {
             instance = new Camera;
+        }
         return instance;
     }
 
-    cv::Mat *getFrame(){
+    cv::Mat *next(){
         cap >> frame;
+        return &frame;
+    }
+
+    cv::Mat *getFrame(){
+        if (frame.empty()) next();
         return &frame;
     }
 
