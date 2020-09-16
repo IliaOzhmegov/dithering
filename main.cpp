@@ -2,6 +2,7 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui.hpp"
 #include "camera/camera_capturing.h"
+#include "filters/dithering.h"
 
 
 Camera *Camera::instance = 0;
@@ -15,6 +16,7 @@ int main(int argc, char** argv)
     {
         Mat * frame = s->next();
         if( frame->empty() ) break; // end of video stream
+        dithering::simple(frame);
         imshow("this is you, smile! :)", *frame);
         if( waitKey(10) == 27 ) break; // stop capturing by pressing ESC
     }

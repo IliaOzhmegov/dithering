@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_package( OpenCV REQUIRED )
 
-add_executable(Dithering main.cpp camera/camera_capturing.cpp camera/camera_capturing.h)
+add_executable(Dithering main.cpp camera/camera_capturing.cpp camera/camera_capturing.h filters/dithering.cpp filters/dithering.h)
 
 target_link_libraries(Dithering ${OpenCV_LIBS} )
 
